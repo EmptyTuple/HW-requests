@@ -3,7 +3,7 @@ import requests
 API = 'https://superheroapi.com/api/2619421814940190/'
 
 def get_hero(competitors: list) -> str:
-    for hero in heroes_list:
+    for hero in competitors:
         for result in requests.get(API + f'/search/{hero}').json()['results']:
             superheroes[hero] = int(result['powerstats']['intelligence'])
     winner =  max(superheroes, key=superheroes.get)
