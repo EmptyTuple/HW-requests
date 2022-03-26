@@ -21,11 +21,11 @@ class YaUploader:
         response.raise_for_status()
         
         href = response.json()['href']
-
-        response = requests.put(href, data=open(file_path, 'rb'))
-        response.raise_for_status()
-        if response.status_code == 201:
-            print("Success!")
+        with open (file_path, 'rb') as f:
+            response = requests.put(href, f)
+            response.raise_for_status()
+            if response.status_code == 201:
+                print("Success!")
 
 if __name__ == '__main__':
     path_to_file = input('Enter path to file you want upload: ')
